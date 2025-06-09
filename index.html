@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asistente Integral De Codigo Con IA</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <!-- CodeMirror CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.9/codemirror.min.css ">
+    <link rel="stylesheet" href="styles.css"> <!-- Tu archivo CSS personalizado -->
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.9/theme/dracula.min.css">
+</head>
+
+<body> <!-- Eliminadas clases de Tailwind del body -->
+    <div class="app-container"> <!-- Nueva clase para el contenedor principal -->
+
+        <!-- HEADER TITLE -->
+        <div class="header">
+            <header class="header__title">Asistente Integral de Código con IA</header>
+        </div>
+
+        <!-- INPUT SELECCION DE MODO DE ANALISIS -->
+        <div class="section__header">
+            <!-- BOTON DE SELECCION DE ARCHIVO -->
+
+
+            <div class="header__choose-file "> <!-- Nueva clase editor-controls-group -->
+                <label for="fileInput" class="choose-file">
+
+                    <h2 class="choose-file-title">Selecciona un archivo :</h2>
+
+                </label>
+                <div class="choose__file-button-wrapper">
+
+                    <input class="choose-file-button" type="file" id="fileInput">
+                </div>
+            </div>
+
+            <div class="header__choose-mode">
+                <label for="analysisMode" class="choose-mode-title ">Modo de Análisis:</label>
+                <select id="analysisMode">
+                    <option value="refactor">Refactorización</option>
+                    <option value="test">Pruebas Unitarias</option>
+                    <option value="security">Análisis de Seguridad</option>
+                </select>
+
+
+            </div>
+        </div>
+
+
+        <!-- Contenedor principal para los editores (izquierda y derecha) -->
+        <div class="main-editors-wrapper">
+            <!-- Columna Izquierda: Entrada de Código -->
+            <section class="header__left-section">
+
+                <!-- INPUT SELECCION DE LENGUAJE ENTRADA -->
+                <div class="left__section-input-language editor-controls-group">
+                    <!-- Nueva clase editor-controls-group -->
+                    <label for="languageSelector" class="block text-gray-700 text-sm font-bold mb-2">
+                        <h2 class="languaje-selector-title"> Lenguaje de entrada</h2>
+                    </label>
+                    <select id="languageSelector"
+                        class="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                        <option value="python">Python</option>
+                        <option value="javascript">JavaScript</option>
+                        <option value="java">Java</option>
+                        <option value="csharp">C#</option>
+                        <option value="go">Go</option>
+                        <option value="typescript">TypeScript</option>
+                    </select>
+                </div>
+
+                <!-- AREA CODEMIRROR ENTRADA -->
+                <div class="right__section-title">
+                    <h2 class="text-xl font-bold text-center">Codigo para ejecutar el analisis</h2>
+                    <h3 class="text-lg font-semibold mb-2">Aqui Código A Analizar </h3>
+                </div>
+                <div class="input__editor-container">
+                    <div id="input-editor-container" class="editor-box"> <!-- Nueva clase editor-box -->
+                        <!-- CodeMirror se inicializará aquí -->
+                    </div>
+                    <p class="language-display-message"> <!-- Nueva clase -->
+                        Lenguaje de entrada: <span id="input-lang-display" class="font-semibold">-</span> |
+                        Lenguaje de salida: <span id="output-lang-display" class="font-semibold">-</span>
+                    </p>
+                </div>
+            </section>
+
+            <!-- Columna Derecha: Salida de Código -->
+            <section class="header__right-section">
+                <!-- INPUT DE SELECCION DE LENGUAJE DE SALIDA -->
+                <div class="right__section-output-language editor-controls-group">
+                    <!-- Nueva clase editor-controls-group -->
+                    <label for="outputLanguageSelector" class="block text-gray-700 text-sm font-bold mb-2">
+                        <h2 class="languaje-selector-title">Lenguaje de salida : </h2>
+                    </label>
+                    <select id="outputLanguageSelector"
+                        class="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                        <option value="same">Mismo que entrada</option>
+                        <option value="python">Python</option>
+                        <option value="javascript">JavaScript</option>
+                        <option value="java">Java</option>
+                        <option value="csharp">C#</option>
+                        <option value="go">Go</option>
+                        <option value="typescript">TypeScript</option>
+                    </select>
+                </div>
+
+                <div class="output-section">
+                    <div class="right__section-title">
+                        <h2 class="text-xl font-bold text-center">Resultados del Agente de Refactorización</h2>
+                        <h3 class="text-lg font-semibold mb-2"> Aqui Código Analizado</h3>
+                    </div>
+
+                    <!-- Area de outputLanguage -->
+                    <div>
+                        <div class="relative">
+                            <div class="right__editor-container">
+                                <div id="editor-container" class="editor-box"> <!-- Nueva clase editor-box -->
+                                    <!-- CodeMirror se inicializará aquí -->
+                                </div>
+                            </div>
+
+                            <!-- Mensajes de lenguajes seleccionados -->
+                            <p class="language-display-message"> <!-- Nueva clase -->
+                                Lenguaje de entrada: <span id="input-lang-display" class="font-semibold">-</span> |
+                                Lenguaje de salida: <span id="output-lang-display" class="font-semibold">-</span>
+                            </p>
+
+                            <!-- BOTON DE COPIAR -->
+                            <div class="copy__button">
+                                <button id="copyRefactoredCodeButton" class="copy-button"
+                                    title="Copiar al portapapeles"> <!-- Nueva clase copy-button -->
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </div>
+                            <span id="copy-feedback-message" class="copy-feedback-message">Copiado!</span>
+                            <!-- Nueva clase -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div> <!-- Cierre de main-editors-wrapper -->
+
+        <!-- BOTON DE EJECUTAR EL AGENTE -->
+        <div class="execute__agent">
+            <div class="execute-button-container">
+                <button id="refactorButton" class="refactor-button">
+                    Execute Agent
+                </button>
+            </div>
+        </div>
+
+        <!-- ICONO DE CARGANDO -->
+        <div class="icon__loading">
+            <div id="status-container" class="status-container"> <!-- Nueva clase -->
+                <div id="loading-indicator" class="loading-spinner"> <!-- Nueva clase -->
+                    <span class="visually-hidden">Cargando...</span>
+                </div>
+                <p id="status-message" class="status-message"></p> <!-- Nueva clase -->
+            </div>
+        </div>
+
+
+
+
+
+
+
+        <!-- Comentarios de refactorizacion -->
+        <!-- NUEVO: Contenedor principal para las áreas de resultados adicionales -->
+        <div class="additional-results-wrapper">
+
+            <!-- Columna Izquierda de Resultados: Tests Unitarios -->
+            <div class="result-section flex-1"> <!-- Añadimos flex-1 para que ocupe el espacio -->
+                <h3 class="text-lg font-semibold mb-2">Tests Unitarios Generados:</h3>
+                <div id="unitTestsEditorContainer" class="editor-box">
+                    <!-- CodeMirror de Tests se inicializará aquí -->
+                </div>
+            </div>
+
+            <!-- Columna Derecha de Resultados: Resumen, Seguridad, Flujo -->
+            <div class="text-results-column flex-1"> <!-- Añadimos flex-1 para que ocupe el espacio -->
+                <!-- Resumen de Refactorización -->
+                <div class="result-section">
+                    <h3 class="text-lg font-semibold mb-2">Resumen de Refactorización:</h3>
+                    <pre id="refactoringSummaryOutput" class="result-content"></pre>
+                </div>
+
+                <!-- Análisis de Seguridad -->
+                <div class="result-section">
+                    <h3 class="text-lg font-semibold mb-2">Análisis de Seguridad:</h3>
+                    <pre id="securityAnalysisOutput" class="result-content"></pre>
+                </div>
+
+                <!-- Descripción del Diagrama de Flujo -->
+                <div class="result-section">
+                    <h3 class="text-lg font-semibold mb-2">Descripción del Diagrama de Flujo:</h3>
+                    <pre id="flowchartDescriptionOutput" class="result-content"></pre>
+                </div>
+            </div>
+        </div> <!-- Cierre de additional-results-wrapper -->
+
+
+
+
+
+
+
+    </div>
+
+    <!-- Id del usuario -->
+    <div class="user-id-display-container"> <!-- Nueva clase -->
+        <p>ID de Usuario: <span id="user-id-display"></span></p>
+    </div>
+
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+
+    <!-- CodeMirror JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.9/codemirror.min.js "></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.9/mode/javascript/javascript.min.js "></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.9/mode/python/python.min.js "></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.9/mode/clike/clike.min.js"></script>
+    <!-- Para Java, C#, Go, TypeScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.9/mode/go/go.min.js"></script>
+    <!-- Go tiene un modo específico además de clike -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.9/mode/typescript/typescript.min.js"></script>
+    <!-- TypeScript también tiene un modo específico -->
+
+
+    <script src="firebase-config.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

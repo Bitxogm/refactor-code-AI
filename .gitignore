@@ -1,0 +1,40 @@
+# Directorios de Node.js
+node_modules/
+dist/
+build/
+*.local
+
+# Para ignorar archivos .env en la raíz del proyecto
+.env*
+
+# Archivos de macOS
+.DS_Store 
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.parcel-cache/
+
+# Configuración de VS Code local (opcional, si no quieres compartirla)
+.vscode/ 
+
+# Archivos de Firebase Functions (si tu proyecto de Functions está en una subcarpeta como 'functions/')
+functions/node_modules/
+functions/lib/ # Salida de TypeScript compilado en Functions
+functions/.env # Si usas .env para variables de entorno locales en Functions
+
+# Compiled JavaScript files
+lib/**/*.js
+lib/**/*.js.map
+
+# TypeScript v1 declaration files
+typings/
+
+#configuracion de Firebase
+firebase-config.js
+
+functions/.runtimeconfig.json
+
+.log*
+
+scripts/
+check-secrets.sh

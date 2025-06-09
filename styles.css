@@ -1,0 +1,508 @@
+
+
+/* styles.css */
+
+/* Estilos globales para el cuerpo */
+html, body {
+    height: 100%; /* Asegura que html y body ocupen toda la altura del viewport */
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+    background-color: #f3f4f6; /* bg-gray-100 */
+    display: flex; /* Para centrar el contenido principal en el body */
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; /* Alinea el contenido al inicio verticalmente */
+    padding: 1rem; /* p-4 */
+    box-sizing: border-box; /* Incluye padding en el tamaño total */
+}
+
+/* Contenedor principal de la aplicación (la "tarjeta" blanca grande) */
+.app-container {
+    background-color: #ffffff;
+    padding: 2rem; /* p-8 */
+    border-radius: 0.5rem; /* rounded-lg */
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); /* shadow-xl */
+    width: 100%; /* w-full */
+    max-width: 95vw; /* Ocupa el 95% del ancho del viewport */
+    margin-top: 20px; /* Margen superior para separación del borde del body */
+    margin-bottom: 20px; /* Margen inferior */
+    box-sizing: border-box;
+}
+
+/* Título principal de la aplicación */
+.header {
+    margin-bottom: 1.5rem; /* mb-6 */
+    text-align: center;
+}
+
+.header__title {
+    font-size: 2rem; /* text-3xl (30px) */
+    font-weight: 900; /* font-bold */
+    color: #1f2937; /* text-gray-800 */
+    text-decoration: 5px underline rgb(241, 42, 7); /* Subrayado para destacar */
+}
+
+/* Sección de selección de modo de análisis */
+.section__header {
+    display: flex;
+    justify-content: space-around;
+    align-items: center; /* Centra verticalmente label y select */
+    margin-bottom: 1.5rem; /* mb-4 */
+    gap: 10px; /* Espacio entre label y select */
+}
+
+
+
+.header__choose-file {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 500px;
+
+}
+
+.choose-file-title{
+    font-size: 1.5rem;
+    font-weight: 700;
+    white-space: nowrap; /* Fuerza que el texto no se envuelva en varias líneas */
+    flex-shrink: 0;      /* Evita que el elemento se encoja cuando no hay espacio suficiente */
+    margin-right: 5px;
+}
+.choose__file-button-wrapper{
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+.choose__file-button-wrapper >input{
+    margin-left: 0.5;
+    font-size: 0.8rem;
+    border-radius: 4px;
+}
+
+
+
+
+
+
+    
+
+
+.header__choose-mode {
+    font-size: 1.5rem;
+    color: #0c52e7;
+    display: flex; /* Permite que label y select estén en línea */
+    align-items: center;
+    gap: 10px;
+    width: 100%; /* Asegura que ocupe el ancho disponible */
+    max-width: 400px; 
+}
+
+.choose-mode-title {
+    flex-shrink: 0; /* Evita que la etiqueta se encoja */
+    font-weight: 700; /* font-bold */
+    color: #374151; /* text-gray-700 */
+    font-size: 1.5rem; /* MODIFICADO: Aumentado el tamaño de la fuente a 1.5rem (24px) */
+    margin-bottom: 0; 
+    background-color: 2px solid rebeccapurple;/* Elimina margen inferior si flex */
+}
+
+.languaje-selector-title{
+    font-size: 1.2rem;
+    font-weight: 800;
+}
+
+
+/* Contenedor principal de los editores (izquierda y derecha) */
+.main-editors-wrapper {
+    display: flex; /* Habilita Flexbox */
+    flex-wrap: wrap; /* Permite que las columnas se envuelvan en pantallas pequeñas */
+    gap: 20px; /* Espacio entre las columnas */
+    margin-bottom: 20px; /* Espacio debajo de esta sección */
+    justify-content: center; /* Centra las columnas horizontalmente */
+    align-items: flex-start; /* Alinea las columnas al inicio (arriba) */
+    width: 100%; /* Ocupa todo el ancho disponible del contenedor padre */
+    /* max-width: 95vw; Mismo ancho que .app-container */
+    flex-grow: 1; /* Permite que este contenedor crezca y ocupe el espacio vertical restante */
+    min-height: 0; /* Permite que flex-grow funcione correctamente */
+}
+.header__left-section,
+.header__right-section {
+    flex-direction: row;
+    width: 900px;
+    height: 90vh;
+    border : 2px red solid;
+    
+    /* flex:1; */
+    /* width:100%; */
+}
+
+/* Estilos para las columnas izquierda y derecha */
+
+
+/* Grupo de controles de editor (selectores de lenguaje, botón de archivo) */
+.editor-controls-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 1rem; /* Espacio debajo de cada grupo de control */
+    position: relative; /* Para la flecha personalizada del select */
+}
+
+.editor-controls-group label {
+    flex-shrink: 0; /* Evita que la etiqueta se encoja */
+    font-weight: 700; /* font-bold */
+    color: #374151; /* text-gray-700 */
+    font-size: 0.875rem; /* text-sm */
+    margin-bottom: 0; /* Elimina el margen inferior si está en flex */
+}
+
+/* Estilos para los elementos select */
+.editor-controls-group select {
+    flex-grow: 1; /* Permite que el select ocupe el espacio restante */
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); /* shadow */
+    border: 1px solid #e5e7eb; /* border */
+    border-radius: 0.25rem; /* rounded */
+    padding: 0.5rem 2.5rem 0.5rem 0.75rem; /* Padding para dejar espacio a la flecha */
+    color: #374151; /* text-gray-700 */
+    line-height: normal; /* Asegura el espaciado vertical del texto */
+    -webkit-appearance: none; /* Elimina la flecha nativa */
+    -moz-appearance: none;
+    appearance: none;
+    background-color: #cc9292; /* Fondo blanco para el select */
+    vertical-align: middle; /* Intenta alinear verticalmente el contenido */
+}
+
+/* Flecha personalizada para los selectores */
+.editor-controls-group::after {
+    content: '\25BC'; /* Carácter Unicode para flecha hacia abajo */
+    position: absolute;
+    right: 1rem; /* Posición desde la derecha del contenedor */
+    top: 50%; /* Centra verticalmente */
+    transform: translateY(-50%); /* Ajuste fino para el centrado vertical */
+    pointer-events: none; /* Permite hacer clic en el select a través de la flecha */
+    color: #374151; /* Color de la flecha */
+    font-size: 0.875rem; /* Tamaño de la flecha */
+    z-index: 1; /* Asegura que la flecha esté por encima del select */
+}
+
+/* Estilos para el input de archivo */
+.choose-file-button {
+    display: block; /* block */
+    width: 100%; /* w-full */
+    font-size: 0.875rem; /* text-sm */
+    color: #6b7280; /* text-gray-500 */
+    /* Estilos personalizados para el input file */
+    --tw-file-mr: 1rem;
+    --tw-file-py: 0.5rem;
+    --tw-file-px: 1rem;
+    --tw-file-rounded: 0.25rem;
+    --tw-file-border-0: 0;
+    --tw-file-text-sm: 0.875rem;
+    --tw-file-font-semibold: 600;
+    --tw-file-bg-blue-50: #eff6ff;
+    --tw-file-text-blue-700: #1d4ed8;
+    --tw-file-hover-bg-blue-100: #dbeafe;
+    cursor: pointer;
+}
+
+/* Estilos para los contenedores de CodeMirror y la clase principal de CodeMirror */
+.editor-box { /* Div donde se inicializa CodeMirror */
+    border-radius: 0.25rem; /* rounded */
+    background-color: #1a202c; /* bg-gray-900 */
+    color: #ffffff; /* text-white */
+    padding: 1rem; /* p-4 */
+    overflow: auto; /* Oculta barras de scroll internas si no son necesarias */
+    height: 700px; /* Altura fija para los editores. Puedes probar '80vh' para más responsividad */
+    /* width: 100%; Asegura que el editor ocupe el 100% de su contenedor */
+    box-sizing: border-box;
+}
+
+/* Clase añadida automáticamente por CodeMirror */
+.CodeMirror {
+    height: 100%; /* CodeMirror debe ocupar el 100% de su editor-box padre */
+    width: 100%;
+    font-size: 0.95rem; /* Ajuste el tamaño de la fuente para el código */
+}
+/* Estilos para la barra de scroll de CodeMirror */
+.CodeMirror-vscrollbar, .CodeMirror-hscrollbar {
+  overflow: auto; /* Asegura que las barras de desplazamiento se muestren si son necesarias */
+}
+
+/* Sección de resultados (Columna derecha) */
+.output-section {
+    background-color: #f3f4f6; /* bg-gray-100 */
+    border-radius: 0.5rem; /* rounded-lg */
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); /* shadow-md */
+    margin-top: 1rem; /* Espacio para separar de los controles de lenguaje de salida */
+}
+
+.right__section-title {
+    margin-bottom: 1rem; /* mb-4 */
+    text-align: center;
+}
+.right__section-title h2 {
+    font-size: 1.25rem; /* text-xl */
+    font-weight: 700; /* font-bold */
+    color: #1f2937; /* text-gray-800 */
+}
+
+/* Contenedor del botón de copiar */
+.copy__button {
+    
+    position: absolute;
+    bottom: 0.5rem; 
+    right: 0rem;/* Ajuste para que esté dentro del .editor-box */
+    z-index: 2; /* Para que esté sobre el CodeMirror */
+}
+
+.copy-button {
+    background-color: #eb8b0d; /* bg-gray-200 */
+    color: #374151; /* text-gray-700 */
+    padding: 0.5rem; /* p-2 */
+    border-radius: 9999px; /* rounded-full */
+    transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1); /* transition duration-200 */
+    border: none; /* Elimina el borde por defecto del botón */
+    cursor: pointer;
+    margin: 3rem;
+    
+}
+
+.copy-button:hover {
+    background-color: #d1d5db; /* hover:bg-gray-300 */
+}
+
+/* Mensaje de feedback de copiado */
+.copy-feedback-message {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #22c55e; /* bg-green-500 */
+    color: #ffffff; /* text-white */
+    font-size: 0.75rem; /* text-xs */
+    padding: 0.25rem 0.5rem; /* px-2 py-1 */
+    border-radius: 0.375rem; /* rounded-md */
+    opacity: 0; /* Oculto por defecto */
+    transition: opacity 300ms cubic-bezier(0.4, 0, 0.2, 1); /* Transición suave */
+    pointer-events: none; /* No interfiere con clics */
+    z-index: 10; /* Asegura que esté encima de todo */
+}
+
+/* Mensaje de lenguajes seleccionados */
+.language-display-message {
+    font-size: 1.2rem; 
+    color: #6b7280; 
+    margin-top: 1rem; 
+    text-align: start;
+    margin: 1rem;
+    font-weight: bolder;
+}
+
+
+
+/* Botón de ejecutar agente */
+.execute__agent {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem; 
+    margin-bottom: 1.5rem; 
+    text-align: center;
+    
+}
+
+.execute-button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 400px;
+    height: 3rem;
+    background-color: rgb(26, 226, 36);
+    font-size: 1.5rem;
+    border-radius: 1rem;
+}
+
+.execute-button-container:hover{
+    background-color: #3b82f6;
+    color: white;
+    transition: all 200ms ease-in-out;
+}
+
+
+
+/* Icono de carga y mensajes de estado */
+.icon__loading {
+    margin-bottom: 1rem; /* mb-4 */
+    text-align: center;
+}
+
+.status-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 40px; /* Para evitar saltos cuando aparece/desaparece el spinner */
+}
+
+
+/* Estilos para el spinner de carga mejorado */
+.loading-spinner {
+    display: none;
+    width: 3rem; /* un poco más grande */
+    height: 3rem; /* un poco más grande */
+    border: 0.4em solid rgba(59, 130, 246, 0.3); /* Un azul más suave y semi-transparente para la base */
+    border-top-color: #3b82f6; /* Azul fuerte para la parte superior (el que gira) */
+    border-radius: 50%; /* Totalmente redondo */
+    animation: spin 0.8s ease-in-out infinite; /* Animación más rápida y con easing */
+    box-shadow: 0 0 10px rgba(59, 130, 246, 0.5); /* Sombra sutil para darle profundidad */
+    margin-bottom: 0.5rem;
+}
+
+/* Definición de la animación de giro */
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+.status-message {
+    font-size: 0.875rem; /* text-sm */
+    color: #4b5563; /* text-gray-600 */
+    margin-top: 0.5rem; /* mt-2 */
+}
+
+/* Secciones de resultados adicionales */
+
+
+/* Secciones de resultados adicionales */
+.additional-results-wrapper {
+    display: flex; /* Habilita Flexbox para las columnas de resultados */
+    flex-wrap: wrap; /* Permite que las columnas se envuelvan en pantallas pequeñas */
+    gap: 20px; /* Espacio entre las columnas de resultados */
+    margin-top: 2rem; /* Espacio para separar de la sección principal */
+    width: 100%;
+    max-width: 95vw;
+    justify-content: center; /* Centra el contenido horizontalmente */
+    align-items: flex-start; /* Alinea los elementos al inicio verticalmente */
+}
+
+.additional-results-wrapper .result-section {
+    flex: 1; /* Hace que cada columna de resultados ocupe el espacio disponible */
+    min-width: 350px; /* Ancho mínimo para las columnas de resultados */
+    box-sizing: border-box; /* Incluye padding en el tamaño total */
+    display: flex; /* Para organizar el h3 y el contenido */
+    flex-direction: column;
+    padding: 1rem; /* Padding interno */
+    background-color: #ffffff; /* Fondo blanco */
+    border-radius: 0.5rem; /* Bordes redondeados */
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+}
+
+.text-results-column {
+    display: flex; /* Habilita Flexbox para las 3 secciones de texto */
+    flex-direction: column; /* Apila las secciones de texto */
+    gap: 15px; /* Espacio entre las secciones de texto */
+    flex: 1; /* Ocupa el espacio restante en la columna derecha */
+    min-width: 350px; /* Asegura un ancho mínimo para esta columna */
+}
+
+.text-results-column .result-section {
+    margin-top: 0; /* Elimina margen superior que pueden tener de la regla general */
+    margin-bottom: 0; /* Elimina margen inferior, el gap del padre se encargará */
+    flex: 1; /* Permite que cada sección de texto ocupe el espacio disponible en su columna */
+}
+
+
+.result-section h3 {
+    font-size: 1.5rem; /* text-lg */
+    font-weight: 600; /* font-semibold */
+    margin-bottom: 0.5rem; /* mb-2 */
+    color: #1f2937; /* text-gray-800 */
+}
+
+
+.result-content {
+    white-space: pre-wrap; /* Mantiene saltos de línea y espacios */
+    padding: 0.75rem; /* p-3 */
+    border: 1px solid #4b5563; /* MODIFICADO: Borde más oscuro */
+    border-radius: 0.375rem; /* rounded-md */
+    background-color: #96a1b1; /* MODIFICADO: Fondo oscuro */
+    font-size: 1rem; /* MODIFICADO: Aumentado el tamaño de la fuente */
+    color: #19191a; /* MODIFICADO: Color de texto claro */
+    overflow-x: auto; /* Permite scroll horizontal para código largo */
+}
+
+
+/* NUEVO: Estilos específicos para el CodeMirror de Tests Unitarios */
+#unitTestsEditorContainer.editor-box {
+    /* Mantenemos la altura flexible y el rango, pero controlamos el scroll aquí */
+    height: auto; /* Permite que el contenedor se ajuste al contenido si es pequeño */
+    min-height: 150px;
+    height: 700px; /* Altura máxima antes de que aparezca el scroll */
+    flex-grow: 1; /* Asegura que el contenedor crezca dentro de su columna */
+    overflow-y: auto; /* <--- AÑADIDO: Scroll vertical solo cuando el contenido excede max-height */
+    overflow-x: auto; /* <--- AÑADIDO: Scroll horizontal solo cuando las líneas son muy largas */
+    /* Aseguramos que el overflow sea gestionado por este contenedor */
+}
+
+/* AJUSTE CLAVE: Estilos para la instancia de CodeMirror dentro del contenedor de Tests Unitarios */
+/* CodeMirror debe llenar el 100% de su contenedor y NO gestionar su propio scroll aquí. */
+#unitTestsEditorContainer .CodeMirror {
+    height: 100% !important; /* <--- CRUCIAL: Fuerza a CodeMirror a llenar el 100% de la altura de su padre */
+    width: 100% !important;   /* <--- CRUCIAL: Fuerza a CodeMirror a llenar el 100% del ancho de su padre */
+    /* ELIMINADO: overflow-y: auto !important; y overflow-x: auto !important; */
+    /* La gestión del scroll la hace ahora el #unitTestsEditorContainer.editor-box */
+    box-sizing: border-box; /* Asegura que padding y border se incluyan en el tamaño */
+}
+
+
+
+/* ID de usuario */
+.user-id-display-container {
+    text-align: center;
+    color: #6b7280; /* text-gray-500 */
+    font-size: 0.75rem; /* text-xs */
+    margin-top: 1rem; /* mt-4 */
+    padding-bottom: 1rem; /* Un poco de padding abajo */
+}
+
+/* Media Queries para Responsividad */
+@media (max-width: 768px) {
+    .main-editors-wrapper {
+        flex-direction: column; /* Apila las columnas en pantallas pequeñas */
+        gap: 15px; /* Reduce el espacio */
+    }
+
+    .header__left-section,
+    .header__right-section {
+        min-width: unset; /* Elimina el min-width */
+        width: 100%; /* Ocupa todo el ancho */
+        padding: 5px; /* Reduce el padding */
+    }
+
+    .app-container {
+        padding: 1rem; /* Reduce el padding del contenedor principal */
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    .header__title {
+        font-size: 1.5rem; /* Reduce el tamaño del título principal */
+    }
+
+    .refactor-button {
+        padding: 0.6rem 1.5rem; /* Ajusta el padding del botón */
+    }
+}

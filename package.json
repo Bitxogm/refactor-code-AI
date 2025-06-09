@@ -1,0 +1,14 @@
+{
+  "name": "agente-refactorizacion-v-0.1",
+  "version": "1.0.0",
+  "description": "Code AI Agent (Otaku&Obama_2025) English Version Project Overview The Code AI Agent is an innovative web application designed to assist developers by leveraging Artificial Intelligence for advanced code analysis and refactoring. Developed with a modern web stack, it provides capabilities such as code refactoring, unit test generation, security analysis, and flow diagram descriptions across multiple programming languages.",
+  "main": "firebase-config.example.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "check-secrets": "bash scripts/check-secrets.sh"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
