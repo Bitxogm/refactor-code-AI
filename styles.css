@@ -2,19 +2,18 @@
 
 /* styles.css */
 
-/* Estilos globales para el cuerpo */
+
+
 html, body {
-    height: 100%; /* Asegura que html y body ocupen toda la altura del viewport */
-    margin: 0;
-    padding: 0;
-    font-family: 'Inter', sans-serif;
-    background-color: #f3f4f6; /* bg-gray-100 */
-    display: flex; /* Para centrar el contenido principal en el body */
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start; /* Alinea el contenido al inicio verticalmente */
-    padding: 1rem; /* p-4 */
-    box-sizing: border-box; /* Incluye padding en el tamaño total */
+ 
+ 
+    margin: 0; /* Elimina márgenes predeterminados */
+    padding: 0; /* Elimina rellenos predeterminados */
+    width: 100%; /* Asegura que ocupe todo el ancho disponible */
+    height: 100%; /* Asegura que ocupe toda la altura disponible */
+    overflow-x: hidden; /* Evita el scroll horizontal a nivel del body */
+    font-family: 'Inter', sans-serif; /* Fuente global */
+    background-color: #f3f4f6; /* Color de fondo global */
 }
 
 /* Contenedor principal de la aplicación (la "tarjeta" blanca grande) */
@@ -24,10 +23,12 @@ html, body {
     border-radius: 0.5rem; /* rounded-lg */
     box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); /* shadow-xl */
     width: 100%; /* w-full */
-    max-width: 95vw; /* Ocupa el 95% del ancho del viewport */
-    margin-top: 20px; /* Margen superior para separación del borde del body */
-    margin-bottom: 20px; /* Margen inferior */
+    max-width: 1440px;
+    margin: 20px auto;
     box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 /* Título principal de la aplicación */
@@ -126,19 +127,28 @@ html, body {
     flex-grow: 1; /* Permite que este contenedor crezca y ocupe el espacio vertical restante */
     min-height: 0; /* Permite que flex-grow funcione correctamente */
 }
-.header__left-section,
+/* .header__left-section,
 .header__right-section {
     flex-direction: row;
     width: 900px;
-    height: 90vh;
     border : 2px red solid;
-    
-    /* flex:1; */
-    /* width:100%; */
-}
+}*/
+
 
 /* Estilos para las columnas izquierda y derecha */
 
+/* Ajustes para las columnas izquierda y derecha (los contenedores de los editores) */
+.header__left-section,
+.header__right-section {
+    flex: 1; /* Esto es una abreviatura de flex-grow: 1; flex-shrink: 1; flex-basis: 0%; */
+              /* Significa que ambos elementos intentarán ocupar una parte IGUAL del espacio disponible. */
+              /* flex-basis: 0% es crucial para que no tomen un tamaño inicial basado en el contenido. */
+    min-width: 450px; /* Ancho mínimo antes de que se envuelvan. Ajusta si necesitas que se apilen antes o después. */
+    height: 80vh; /* Mantener la altura para que el editor tenga un espacio definido. Puedes ajustar este valor. */
+    border: 2px red solid; /* Mantener para depurar */
+    display: flex; /* Importante: Hacemos que estos también sean contenedores flex */
+    flex-direction: column; /* Para que el editor-box ocupe el 100% de su altura */
+}
 
 /* Grupo de controles de editor (selectores de lenguaje, botón de archivo) */
 .editor-controls-group {
@@ -207,16 +217,22 @@ html, body {
 }
 
 /* Estilos para los contenedores de CodeMirror y la clase principal de CodeMirror */
-.editor-box { /* Div donde se inicializa CodeMirror */
-    border-radius: 0.25rem; /* rounded */
-    background-color: #1a202c; /* bg-gray-900 */
-    color: #ffffff; /* text-white */
-    padding: 1rem; /* p-4 */
-    overflow: auto; /* Oculta barras de scroll internas si no son necesarias */
-    height: 700px; /* Altura fija para los editores. Puedes probar '80vh' para más responsividad */
-    /* width: 100%; Asegura que el editor ocupe el 100% de su contenedor */
+ .editor-box { 
+    border-radius: 0.25rem; 
+    background-color: #1a202c; 
+    color: #ffffff; 
+    padding: 1rem; 
+    overflow: auto; 
+    height: 700px; 
     box-sizing: border-box;
-}
+} 
+
+
+
+
+
+
+
 
 /* Clase añadida automáticamente por CodeMirror */
 .CodeMirror {
@@ -224,9 +240,11 @@ html, body {
     width: 100%;
     font-size: 0.95rem; /* Ajuste el tamaño de la fuente para el código */
 }
+
+
 /* Estilos para la barra de scroll de CodeMirror */
 .CodeMirror-vscrollbar, .CodeMirror-hscrollbar {
-  overflow: auto; /* Asegura que las barras de desplazamiento se muestren si son necesarias */
+  overflow: auto; 
 }
 
 /* Sección de resultados (Columna derecha) */
@@ -468,7 +486,6 @@ html, body {
 }
 
 
-
 /* ID de usuario */
 .user-id-display-container {
     text-align: center;
@@ -478,31 +495,9 @@ html, body {
     padding-bottom: 1rem; /* Un poco de padding abajo */
 }
 
-/* Media Queries para Responsividad */
-@media (max-width: 768px) {
-    .main-editors-wrapper {
-        flex-direction: column; /* Apila las columnas en pantallas pequeñas */
-        gap: 15px; /* Reduce el espacio */
-    }
 
-    .header__left-section,
-    .header__right-section {
-        min-width: unset; /* Elimina el min-width */
-        width: 100%; /* Ocupa todo el ancho */
-        padding: 5px; /* Reduce el padding */
-    }
 
-    .app-container {
-        padding: 1rem; /* Reduce el padding del contenedor principal */
-        margin-top: 10px;
-        margin-bottom: 10px;
-    }
 
-    .header__title {
-        font-size: 1.5rem; /* Reduce el tamaño del título principal */
-    }
 
-    .refactor-button {
-        padding: 0.6rem 1.5rem; /* Ajusta el padding del botón */
-    }
-}
+
+
