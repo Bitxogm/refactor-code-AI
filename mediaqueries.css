@@ -1,133 +1,152 @@
-    /* styles.css */
+@media (max-width: 1983px) {
 
-    /* ... (tu CSS existente, sin cambios arriba) ... */
+    /* Ajustes para el contenedor principal de la aplicación */
+    .app-container {
+        padding: 1.5rem;
+        max-width: 90vw;
+        /* Puedes ajustar este valor si 1440px es demasiado grande */
 
-    /* Media Query para pantallas con un ancho máximo de 1983px */
-    /* styles.css */
-
-    /* ... (tu CSS existente antes de las media queries) ... */
-
-    /* Media Query para pantallas con un ancho máximo de 1983px */
-    @media (max-width: 1983px) {
-        /* Ajustes para el contenedor principal de la aplicación */
-        .app-container {
-            padding: 1.5rem;
-            max-width: 90vw; 
-        }
-
-        /* Aseguramos que la sección del encabezado se apile y tenga un ancho máximo */
-        .section__header {
-            flex-direction: column; /* Apila los elementos en columna */
-            align-items: center; /* Centra los elementos apilados */
-            gap: 15px;
-            width: 100%; /* Ocupa todo el ancho disponible de su padre */
-            max-width: 700px; /* **Ancho máximo consistente para el encabezado** */
-        }
-
-        /* Los elementos dentro del encabezado también deben adaptarse */
-        .header__choose-file,
-        .header__choose-mode {
-            width: 100%; /* Ocupa todo el ancho de su contenedor (.section__header) */
-            max-width: 700px; /* **Ancho máximo consistente para los selectores** */
-            justify-content: center;
-        }
-
-        /* El contenedor de los editores principales también debe tener un ancho consistente */
-        .main-editors-wrapper {
-            flex-direction: column;
-            gap: 15px;
-            width: 100%;
-            max-width: 700px; /* **Ancho máximo consistente para los editores principales** */
-        }
-
-        /* Los propios editores dentro de main-editors-wrapper */
-        .header__left-section,
-        .header__right-section {
-            width: 100%;
-            height: auto;
-            min-height: 500px;
-            border: 1px solid #ccc;
-        }
-
-        .editor-box {
-            width: 100%;
-            height: 600px;
-        }
-
-        /* Y ahora, la sección de resultados adicionales, con el mismo ancho máximo */
-        .additional-results-wrapper {
-            flex-direction: column;
-            align-items: center;
-            gap: 15px;
-            width: 100%;
-            max-width: 700px; /* **Ancho máximo consistente para los resultados adicionales** */
-        }
-
-        /* Los elementos individuales dentro de additional-results-wrapper */
-        .additional-results-wrapper .result-section {
-            width: 100%;
-            min-width: unset;
-            max-width: 700px; /* **Ancho máximo consistente para cada sección de resultado** */
-            margin-top: 0;
-        }
-
-        .text-results-column {
-            width: 100%;
-            max-width: 700px; /* **Ancho máximo consistente para la columna de texto de resultados** */
-        }
+        /* CRUCIAL: Asegurarse de que el app-container centre a sus hijos en esta media query */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        /* Esto es lo que centrará a sus hijos (como additional-results-wrapper) */
+        /* El margin: auto del app-container sigue funcionando desde la regla general */
     }
 
-    /* ... (tu CSS existente para @media (max-width: 768px) y el resto del CSS) ... */
-    
-
-    /* Ajustes para pantallas aún más pequeñas (móviles, max-width: 768px) */
-    @media (max-width: 768px) {
-        body {
-            padding: 0.5rem;
-        }
-
-        .app-container {
-            padding: 1rem;
-            margin-top: 10px;
-            margin-bottom: 10px;
-        }
-
-        .header__title {
-            font-size: 1.5rem; /* Ajuste para móviles */
-        }
-
-        .section__header {
-            gap: 10px;
-        }
-
-        .choose-file-title,
-        .choose-mode-title {
-            font-size: 1.1rem; /* Ajuste para móviles */
-        }
-
-        .editor-box {
-            height: 350px; /* Altura más pequeña para móviles */
-        }
-
-        .additional-results-wrapper .result-section {
-            max-width: 100%; /* En móviles, que ocupen todo el ancho */
-        }
-
-        .text-results-column {
-            max-width: 100%; /* En móviles, que ocupen todo el ancho */
-        }
-
-        .copy__button {
-            position: static; /* Vuelve a la posición normal en el flujo del documento */
-            margin-top: 1rem;
-            display: flex;
-            justify-content: center;
-            right: auto;
-            bottom: auto;
-        }
-
-        .copy-button {
-            margin: 0;
-        }
+    /* Aseguramos que la sección del encabezado se apile y tenga un ancho máximo */
+    .section__header {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+        width: 100%;
+        max-width: 700px;
+        margin: 0 auto;
     }
-    
+
+    /* Los elementos dentro del encabezado también deben adaptarse */
+    .header__choose-file,
+    .header__choose-mode {
+        width: 100%;
+        max-width: 700px;
+        /* Ancho máximo consistente para los selectores */
+        justify-content: center;
+        align-items: flex-end;
+        margin: 0 auto;
+        /* Asegura que estos elementos se centren dentro de section__header */
+    }
+
+    /* El contenedor de los editores principales también debe tener un ancho consistente */
+    .main-editors-wrapper {
+        flex-direction: column;
+        gap: 15px;
+        width: 100%;
+        max-width: 700px;
+        /* Ancho máximo consistente para los editores principales */
+        margin: 0 auto;
+        /* Asegura que el propio main-editors-wrapper se centre */
+    }
+
+    /* Los propios editores dentro de main-editors-wrapper */
+    .header__left-section,
+    .header__right-section {
+        width: 100%;
+        height: auto;
+        min-height: 500px;
+        border: 1px solid #ccc;
+    }
+
+    .editor-box {
+        width: 100%;
+        height: 600px;
+    }
+
+    /* Y ahora, la sección de resultados adicionales, con el mismo ancho máximo */
+    .additional-results-wrapper {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+        width: 100%;
+        max-width: 700px;
+        /* Ancho máximo consistente para los resultados adicionales */
+        margin: 0 auto;
+        /* ¡Esto lo centra horizontalmente! */
+    }
+
+    /* Los elementos individuales dentro de additional-results-wrapper */
+    .additional-results-wrapper .result-section {
+        width: 100%;
+        min-width: unset;
+        max-width: 700px;
+        /* Ancho máximo consistente para cada sección de resultado */
+        margin-top: 0;
+        margin: 0 auto;
+        /* Asegura que las secciones individuales se centren si no ocupan todo el ancho */
+    }
+
+    .text-results-column {
+        width: 100%;
+        max-width: 700px;
+        /* Ancho máximo consistente para la columna de texto de resultados */
+        margin: 0 auto;
+        /* Asegura que esta columna se centre */
+    }
+}
+
+/* Ajustes para pantallas aún más pequeñas (móviles, max-width: 768px) */
+@media (max-width: 768px) {
+    body {
+        padding: 0.5rem;
+    }
+
+    .app-container {
+        padding: 1rem;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    .header__title {
+        font-size: 1.5rem;
+        /* Ajuste para móviles */
+    }
+
+    .section__header {
+        gap: 10px;
+    }
+
+    .choose-file-title,
+    .choose-mode-title {
+        font-size: 1.1rem;
+        /* Ajuste para móviles */
+    }
+
+    .editor-box {
+        height: 350px;
+        /* Altura más pequeña para móviles */
+    }
+
+    .additional-results-wrapper .result-section {
+        max-width: 100%;
+        /* En móviles, que ocupen todo el ancho */
+    }
+
+    .text-results-column {
+        max-width: 100%;
+        /* En móviles, que ocupen todo el ancho */
+    }
+
+    .copy__button {
+        position: static;
+        /* Vuelve a la posición normal en el flujo del documento */
+        margin-top: 1rem;
+        display: flex;
+        justify-content: center;
+        right: auto;
+        bottom: auto;
+    }
+
+    .copy-button {
+        margin: 0;
+    }
+}
