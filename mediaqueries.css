@@ -29,7 +29,7 @@
     .header__choose-file,
     .header__choose-mode {
         width: 100%;
-        max-width: 700px;
+        /* max-width: 700px; */
         /* Ancho máximo consistente para los selectores */
         justify-content: center;
         align-items: flex-end;
@@ -125,7 +125,8 @@
         height: 350px;
         /* Altura más pequeña para móviles */
     }
-
+    .header__left-section,
+    .header__right-section,
     .additional-results-wrapper .result-section {
         max-width: 100%;
         /* En móviles, que ocupen todo el ancho */
@@ -150,3 +151,4 @@
         margin: 0;
     }
 }
+
