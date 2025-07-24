@@ -155,6 +155,7 @@
 
 @media(max-width: 516px) {
 
+
      * {
         outline: 2px dashed red;
     }
@@ -193,3 +194,17 @@
 
     }
 }
+
+/* 
+
+@media(max-width: 375px) {
+
+ .additional-results-wrapper .result-section{
+        width: 100%;
+        min-width: unset;
+        max-width: 100%;
+        margin: 0 auto;
+        min-height: 200px;
+        height: auto;
+ }
+} */
