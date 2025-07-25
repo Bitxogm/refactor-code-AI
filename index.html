@@ -122,34 +122,37 @@
                     </div>
 
                     <!-- Area de outputLanguage -->
-                    <div>
-                        <div class="relative">
-                            <div class="right__editor-container">
-                                <div id="editor-container" class="editor-box"> <!-- Nueva clase editor-box -->
-                                    <!-- CodeMirror se inicializará aquí -->
-                                </div>
+
+                    <div class="relative">
+                        <div class="right__editor-container">
+                            <div id="editor-container" class="editor-box"> <!-- Nueva clase editor-box -->
+                                <!-- CodeMirror se inicializará aquí -->
                             </div>
+                        </div>
 
-                            <!-- Mensajes de lenguajes seleccionados -->
-                            <p class="language-display-message"> <!-- Nueva clase -->
-                                Lenguaje de entrada: <span id="input-lang-display" class="font-semibold">-</span> |
-                                Lenguaje de salida: <span id="output-lang-display" class="font-semibold">-</span>
-                            </p>
+                        <!-- Mensajes de lenguajes seleccionados -->
+                        <p class="language-display-message"> <!-- Nueva clase -->
+                            Lenguaje de entrada: <span id="input-lang-display" class="font-semibold">-</span> |
+                            Lenguaje de salida: <span id="output-lang-display" class="font-semibold">-</span>
+                        </p>
 
-                            <!-- BOTON DE COPIAR -->
+                        <!-- BOTON DE COPIAR -->
+                        <div class="button-wrapper">
                             <div class="copy__button">
                                 <button id="copyRefactoredCodeButton" class="copy-button"
-                                    title="Copiar al portapapeles"> <!-- Nueva clase copy-button -->
+                                    title="Copiar al portapapeles">
+                                    <!-- Nueva clase copy-button -->
                                     <i class="fas fa-copy"></i>
                                 </button>
                             </div>
                             <span id="copy-feedback-message" class="copy-feedback-message">Copiado!</span>
-                            <!-- Nueva clase -->
                         </div>
                     </div>
                 </div>
             </section>
         </div> <!-- Cierre de main-editors-wrapper -->
+
+
 
         <!-- BOTON DE EJECUTAR EL AGENTE -->
         <div class="execute__agent">
@@ -186,6 +189,17 @@
                 <div id="unitTestsEditorContainer" class="editor-box">
                     <!-- CodeMirror de Tests se inicializará aquí -->
                 </div>
+
+                <!-- Boton de copiar test-results -->
+                <div class="test__button-wrapper">
+                    <div class="copy__button-test">
+                        <button id="copyUnitTestButton" class="copy-button" title="Copiar al portapapeles">
+                            <!-- Nueva clase copy-button -->
+                            <i class="fas fa-copy"></i>
+                        </button>
+                    </div>
+                    <span id="unitTestCopyMessage" class="copy-feedback-test-message">Copiado!</span>
+                </div>
             </div>
 
             <!-- Columna Derecha de Resultados: Resumen, Seguridad, Flujo -->
@@ -210,13 +224,13 @@
             </div>
         </div> <!-- Cierre de additional-results-wrapper -->
 
-
-
-
-
-
-
     </div>
+
+
+
+
+
+
 
     <!-- Id del usuario -->
     <div class="user-id-display-container"> <!-- Nueva clase -->

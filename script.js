@@ -33,7 +33,10 @@ const outputLanguageSelector = document.getElementById("outputLanguageSelector")
 const fileInput = document.getElementById("fileInput");
 const copyRefactoredCodeButton = document.getElementById("copyRefactoredCodeButton");
 const copyFeedbackMessage = document.getElementById("copy-feedback-message");
+const copyUnitTestButton = document.getElementById("copyUnitTestButton");
+const unitTestCopyMessage = document.getElementById("unitTestCopyMessage")
 const analysisModeSelector = document.getElementById("analysisMode");
+
 const exampleSection = document.getElementById("example-section");
 const exampleCodeElement = document.getElementById("example-code");
 const suggestionSection = document.getElementById("suggestion-section");
@@ -71,7 +74,8 @@ function initializeCodeMirror() {
       mode: "javascript", // Modo por defecto al iniciar
       lineNumbers: true,
       theme: "dracula",
-      readOnly: false // Es editable
+      readOnly: false,// Es editable
+      lineWrapping: true
     });
     // Ajustar el tamaño para que CodeMirror ocupe el 100% del contenedor h-96
     inputEditor.setSize("100%", "auto");
@@ -107,7 +111,8 @@ function initializeCodeMirror() {
       mode: "javascript", // <-- ¡ASEGURAMOS UN MODO POR DEFECTO!
       lineNumbers: true,
       theme: "dracula",
-      readOnly: true // Este editor es de solo lectura
+      readOnly: true,
+      lineWrapping: true // Este editor es de solo lectura
     });
     // ! Importante: La altura del contenedor DIV debe ser establecida por CSS (h-96)
     // CodeMirror respetará la altura de su contenedor padre si se establece en el CSS.
@@ -125,7 +130,8 @@ function initializeCodeMirror() {
       mode: "javascript", // Puedes cambiar a "python" o el modo que esperes para los tests
       lineNumbers: true,
       theme: "dracula",
-      readOnly: true // Este editor es de solo lectura
+      readOnly: true, // Este editor es de solo lectura
+      lineWrapping: true
     });
     unitTestsCodeEditor.setSize("100%", unitTestsEditorContainer.style.height || "384px"); // Ajusta el tamaño
     unitTestsCodeEditor.setValue('Los tests unitarios aparecerán aquí...'); // Placeholder inicial
@@ -204,32 +210,6 @@ function handleFileUpload() {
   }
 }
 
-// function handleCopyRefactoredCode() {
-//   if (copyRefactoredCodeButton && copyFeedbackMessage) {
-//     copyRefactoredCodeButton.addEventListener("click", function () {
-//       // Usa CodeMirror para obtener el valor
-//       const codeToCopy = editor ? editor.getValue() : '';
-
-//       // Copia el texto al portapapeles
-//       navigator.clipboard.writeText(codeToCopy)
-//         .then(() => {
-//           // Muestra el mensaje de "Copiado!"
-//           copyFeedbackMessage.classList.remove("opacity-0");
-//           copyFeedbackMessage.classList.add("opacity-100");
-
-//           // Lo oculta después de 2 segundos
-//           setTimeout(() => {
-//             copyFeedbackMessage.classList.remove("opacity-100");
-//             copyFeedbackMessage.classList.add("opacity-0");
-//           }, 2000);
-//         })
-//         .catch(err => {
-//           console.error("Error al copiar el texto:", err);
-//           alert("Hubo un problema al copiar el código.");
-//         });
-//     });
-//   }
-// }
 
 
 function handleCopyRefactoredCode() {
@@ -276,7 +256,49 @@ function handleCopyRefactoredCode() {
   }
 }
 
+// --- NUEVA FUNCIÓN para copiar los tests unitarios ---
+function handleCopyUnitTests() {
+  // Obtener referencias a los elementos del DOM para los tests unitarios
+  // ¡Estos IDs son los que me proporcionaste: copyUnitTestButton y unitTestCopyMessage!
+  const copyUnitTestButton = document.getElementById('copyUnitTestButton');
+  const unitTestCopyMessage = document.getElementById('unitTestCopyMessage');
 
+  if (copyUnitTestButton && unitTestCopyMessage) {
+    copyUnitTestButton.addEventListener("click", function () {
+      // Usa CodeMirror para obtener el valor del editor de tests unitarios
+      const testsToCopy = unitTestsCodeEditor ? unitTestsCodeEditor.getValue() : '';
+
+      console.log("DEBUG: Iniciando copia de tests unitarios.");
+      console.log(`DEBUG: Tamaño de los tests a copiar: ${testsToCopy.length} caracteres.`);
+
+      const startTime = performance.now();
+
+      navigator.clipboard.writeText(testsToCopy)
+        .then(() => {
+          const endTime = performance.now();
+          console.log(`DEBUG: Copia de tests al portapapeles completada en ${(endTime - startTime).toFixed(2)} ms.`);
+
+          // Muestra el mensaje de "Copiado!"
+          unitTestCopyMessage.classList.remove("opacity-0");
+          unitTestCopyMessage.classList.add("opacity-100");
+
+          // Lo oculta después de 2 segundos
+          setTimeout(() => {
+            unitTestCopyMessage.classList.remove("opacity-100");
+            unitTestCopyMessage.classList.add("opacity-0");
+          }, 2000);
+        })
+        .catch(err => {
+          const endTime = performance.now();
+          console.error(`DEBUG: Error al copiar los tests en ${(endTime - startTime).toFixed(2)} ms:`, err);
+          // Importante: No usar alert(). Mostrar un mensaje en la UI o solo en consola.
+          console.error("Hubo un problema al copiar los tests unitarios.");
+        });
+    });
+  } else {
+    console.error("DEBUG: No se encontraron los elementos HTML para copiar los tests unitarios.");
+  }
+}
 /**
  * Maneja el evento del botón de refactorizar.
  * Envía el código a Firestore y espera el resultado.
@@ -557,8 +579,9 @@ document.addEventListener("DOMContentLoaded", () => {
   // Iniciar todas las funciones principales
   initializeCodeMirror();
   handleFileUpload();           // Función para cargar archivos
-  handleCopyRefactoredCode();  // Función para copiar al portapapeles
   handleRefactorButton();      // Función para enviar código a refactorizar
+  handleCopyRefactoredCode();  // Función para copiar al portapapeles
+  handleCopyUnitTests();
 });
 
 
