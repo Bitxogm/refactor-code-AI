@@ -137,7 +137,7 @@
         /* En móviles, que ocupen todo el ancho */
     }
 
-    .copy__button {
+    .copy__button, .copy__button-test{
         position: static;
         /* Vuelve a la posición normal en el flujo del documento */
         margin-top: 1rem;
@@ -195,16 +195,3 @@
     }
 }
 
-/* 
-
-@media(max-width: 375px) {
-
- .additional-results-wrapper .result-section{
-        width: 100%;
-        min-width: unset;
-        max-width: 100%;
-        margin: 0 auto;
-        min-height: 200px;
-        height: auto;
- }
-} */
