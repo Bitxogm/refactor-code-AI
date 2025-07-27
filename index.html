@@ -141,12 +141,22 @@
                             <div class="copy__button">
                                 <button id="copyRefactoredCodeButton" class="copy-button"
                                     title="Copiar al portapapeles">
-                                    <!-- Nueva clase copy-button -->
                                     <i class="fas fa-copy"></i>
                                 </button>
                             </div>
-                            <span id="copy-feedback-message" class="copy-feedback-message">Copiado!</span>
+                            <div class="copy-message-wrapper">
+                                <span id="copy-feedback-message" class="copy-feedback-message">Copiado!</span>
+                            </div>
+                            
+                            <button id="copyRefactoredCodeButton" class="copy-button" title="Copiar al portapapeles">
+                                <i class="fas fa-download"></i>
+                            </button>
                         </div>
+                            
+
+
+
+
                     </div>
                 </div>
             </section>
@@ -189,17 +199,24 @@
                 </div>
 
                 <!-- Boton de copiar test-results -->
-                <div class="test__button-wrapper">
 
+                <div class="test__button-wrapper">
                     <div class="copy__button-test">
                         <button id="copyUnitTestButton" class="copy-button" title="Copiar al portapapeles">
                             <!-- Nueva clase copy-button -->
                             <i class="fas fa-copy"></i>
                         </button>
+                        <div class="test-message-wrapper">
+                            <span id="unitTestCopyMessage" class="copy-feedback-test-message">Copiado!</span>
+                        </div>
                     </div>
-                    <span id="unitTestCopyMessage" class="copy-feedback-test-message">Copiado!</span>
-
+                    <button id="copyUnitTestButton" class="copy-button" title="Copiar al portapapeles">
+                        <!-- Nueva clase copy-button -->
+                        <i class="fas fa-download"></i>
+                    </button>
                 </div>
+
+
             </div>
 
             <!-- Columna Derecha de Resultados: Resumen, Seguridad, Flujo -->
