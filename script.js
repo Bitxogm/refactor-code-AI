@@ -184,31 +184,7 @@ function updateStatus(message, type = 'info') {
  * Permite que el contenido del archivo se muestre en el textarea.
  */
 
-function handleFileUpload() {
-  if (fileInput && inputEditor) {
-    fileInput.addEventListener("change", function (event) {
-      const file = event.target.files[0]; // Obtiene el primer archivo seleccionado
-      if (!file) return; // Si no hay archivo, no hagas nada
-      const reader = new FileReader(); // Creador de lectura de archivos
 
-      // Cuando termine de leer el archivo...
-      reader.onload = function (e) {
-        // Usa CodeMirror para establecer el valor
-        inputEditor.setValue(e.target.result);
-        // Muestra un mensaje de éxito
-        updateStatus("Archivo cargado correctamente.", "success");
-      };
-
-      // Si ocurre un error leyendo el archivo...
-      reader.onerror = function (e) {
-        updateStatus("Error al leer el archivo.", "error");
-      };
-
-      // Lee el archivo como texto plano
-      reader.readAsText(file);
-    });
-  }
-}
 
 
 

@@ -103,48 +103,6 @@ export  function processRefactoredCode(code) {
   }
 }
 
-export function handleCopyUnitTests() {
-  // Obtener referencias a los elementos del DOM para los tests unitarios
-  // ¡Estos IDs son los que me proporcionaste: copyUnitTestButton y unitTestCopyMessage!
-  const copyUnitTestButton = document.getElementById('copyUnitTestButton');
-  const unitTestCopyMessage = document.getElementById('unitTestCopyMessage');
-
-  if (copyUnitTestButton && unitTestCopyMessage) {
-    copyUnitTestButton.addEventListener("click", function () {
-      // Usa CodeMirror para obtener el valor del editor de tests unitarios
-      const testsToCopy = unitTestsCodeEditor ? unitTestsCodeEditor.getValue() : '';
-
-      console.log("DEBUG: Iniciando copia de tests unitarios.");
-      console.log(`DEBUG: Tamaño de los tests a copiar: ${testsToCopy.length} caracteres.`);
-
-      const startTime = performance.now();
-
-      navigator.clipboard.writeText(testsToCopy)
-        .then(() => {
-          const endTime = performance.now();
-          console.log(`DEBUG: Copia de tests al portapapeles completada en ${(endTime - startTime).toFixed(2)} ms.`);
-
-          // Muestra el mensaje de "Copiado!"
-          unitTestCopyMessage.classList.remove("opacity-0");
-          unitTestCopyMessage.classList.add("opacity-100");
-
-          // Lo oculta después de 2 segundos
-          setTimeout(() => {
-            unitTestCopyMessage.classList.remove("opacity-100");
-            unitTestCopyMessage.classList.add("opacity-0");
-          }, 2000);
-        })
-        .catch(err => {
-          const endTime = performance.now();
-          console.error(`DEBUG: Error al copiar los tests en ${(endTime - startTime).toFixed(2)} ms:`, err);
-          // Importante: No usar alert(). Mostrar un mensaje en la UI o solo en consola.
-          console.error("Hubo un problema al copiar los tests unitarios.");
-        });
-    });
-  } else {
-    console.error("DEBUG: No se encontraron los elementos HTML para copiar los tests unitarios.");
-  }
-}
 
 export function handleCopyUnitTests() {
   // Obtener referencias a los elementos del DOM para los tests unitarios

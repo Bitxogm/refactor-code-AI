@@ -5,9 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Asistente Integral De Codigo Con IA</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="/dist/output.css" rel="stylesheet">
 
     <!-- CodeMirror CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.9/codemirror.min.css ">
@@ -147,12 +148,12 @@
                             <div class="copy-message-wrapper">
                                 <span id="copy-feedback-message" class="copy-feedback-message">Copiado!</span>
                             </div>
-                            
+
                             <button id="copyRefactoredCodeButton" class="copy-button" title="Copiar al portapapeles">
                                 <i class="fas fa-download"></i>
                             </button>
                         </div>
-                            
+
 
 
 
@@ -248,9 +249,9 @@
     </div>
 
     <!-- Firebase SDKs -->
-    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <!-- <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script> -->
     <!-- CodeMirror JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.9/codemirror.min.js "></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.9/mode/javascript/javascript.min.js "></script>
@@ -260,8 +261,18 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.9/mode/go/go.min.js"></script>
     <!-- Go tiene un modo específico además de clike -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.9/mode/typescript/typescript.min.js"></script>
-    <script src="firebase-config.js"></script>
-    <script src="script.js"></script>
+    <!-- <script src="firebase-config.js"></script> -->
+    <!-- <script src="script.js"></script> -->
+
+
+    <!-- Scripts type:module  para modularizacion : -->
+    <script type="module" src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
+
+    <!-- Tu script principal modular -->
+    <script type="module" src="./modules/main.js"></script>
+
 </body>
 
 </html>
