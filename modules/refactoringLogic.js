@@ -1,5 +1,6 @@
 // refactoringLogic.js
 
+import { serverTimestamp, collection, addDoc, onSnapshot } from 'https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js';
 /**
  * Procesa el código refactorizado para extraer comentarios de línea marcados
  * con //! y devuelve el código limpio y los comentarios.
@@ -164,14 +165,14 @@ export function handleRefactorButton({
 
     try {
       // Enviar el código a Firestore
-      const docRef = await db.collection('code_submissions').add({
+      const docRef = await addDoc(collection(db, 'code_submissions'),{
         originalCode: originalCode,
         status: 'pending', // Estado inicial
-        submissionTime: firebase.firestore.FieldValue.serverTimestamp(), // Hora del servidor
+        submissionTime: serverTimestamp(), // Hora del servidor
         inputLanguage: selectedLanguage,
         outputLanguage: finalOutputLanguage,
         analysisMode: analysisMode,
-        timestamp: firebase.firestore.FieldValue.serverTimestamp()
+        timestamp: serverTimestamp()
       });
 
       console.log("Input Language:", selectedLanguage);
@@ -180,7 +181,7 @@ export function handleRefactorButton({
       updateStatus(`Código enviado. ID de la tarea: ${docRef.id}. Esperando refactorización...`, 'info');
 
       // Escuchar cambios en este documento hasta que tenga el resultado
-      const unsubscribe = docRef.onSnapshot(docSnapshot => {
+      const unsubscribe = onSnapshot(docRef, docSnapshot => {
         if (docSnapshot.exists) {
           const data = docSnapshot.data();
           console.log(data)

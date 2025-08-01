@@ -10,28 +10,28 @@ import { updateStatus } from './statusMessages.js';
  * @param {Event} event - El evento de cambio del input de archivo.
  */
 export function handleFileUpload(event) {
-    const file = event.target.files[0];
-    if (file) {
-        const reader = new FileReader();
-        reader.onload = (e) => {
-            if (inputEditor) {
-                inputEditor.setValue(e.target.result);
-                updateStatus('Archivo cargado correctamente en el editor de entrada.', 'success');
-            } else {
-                updateStatus('Error: Editor de entrada no inicializado para cargar el archivo.', 'error');
-            }
-        };
-        reader.onerror = () => {
-            updateStatus('Error al leer el archivo.', 'error');
-        };
-        reader.readAsText(file);
-    } else {
-        updateStatus('No se seleccionó ningún archivo.', 'warning');
-    }
+  const file = event.target.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      if (inputEditor) {
+        inputEditor.setValue(e.target.result);
+        updateStatus('Archivo cargado correctamente en el editor de entrada.', 'success');
+      } else {
+        updateStatus('Error: Editor de entrada no inicializado para cargar el archivo.', 'error');
+      }
+    };
+    reader.onerror = () => {
+      updateStatus('Error al leer el archivo.', 'error');
+    };
+    reader.readAsText(file);
+  } else {
+    updateStatus('No se seleccionó ningún archivo.', 'warning');
+  }
 }
 
 
-export  function processRefactoredCode(code) {
+export function processRefactoredCode(code) {
   // Limpia contenido anterior
   exampleCodeElement.textContent = '';
   suggestionList.innerHTML = '';
@@ -59,7 +59,9 @@ export  function processRefactoredCode(code) {
   }
 }
 
- export function handleCopyRefactoredCode() {
+export function handleCopyRefactoredCode() {
+  const copyRefactoredCodeButton = document.getElementById('copyRefactoredCodeButton');
+  const copyFeedbackMessage = document.getElementById('copy-feedback-message');
   if (copyRefactoredCodeButton && copyFeedbackMessage) {
     copyRefactoredCodeButton.addEventListener("click", function () {
       // Usa CodeMirror para obtener el valor
@@ -109,6 +111,7 @@ export function handleCopyUnitTests() {
   // ¡Estos IDs son los que me proporcionaste: copyUnitTestButton y unitTestCopyMessage!
   const copyUnitTestButton = document.getElementById('copyUnitTestButton');
   const unitTestCopyMessage = document.getElementById('unitTestCopyMessage');
+  const testsToCopy = unitTestsCodeEditor ? unitTestsCodeEditor.getValue() : '';
 
   if (copyUnitTestButton && unitTestCopyMessage) {
     copyUnitTestButton.addEventListener("click", function () {
@@ -145,4 +148,50 @@ export function handleCopyUnitTests() {
   } else {
     console.error("DEBUG: No se encontraron los elementos HTML para copiar los tests unitarios.");
   }
+}
+
+
+/**
+ * Crea y descarga un archivo de texto con el contenido y nombre de archivo especificados.
+ * @param {string} content - El contenido de texto del archivo.
+ * @param {string} filename - El nombre del archivo a descargar.
+ */
+function downloadTextFile(content, filename) {
+    const blob = new Blob([content], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+}
+
+  // Maneja el clic en el botón de descarga del código refactorizado.
+ 
+export function handleDownloadRefactoredCode() {
+    const downloadButton = document.getElementById('downloadRefactoredCodeButton');
+    if (downloadButton) {
+        downloadButton.addEventListener('click', () => {
+            const codeToDownload = editor ? editor.getValue() : '';
+            if (codeToDownload) {
+                downloadTextFile(codeToDownload, 'refactored_code.txt');
+            }
+        });
+    }
+}
+
+// Maneja el clic en el botón de descarga de los tests unitarios.
+ 
+export function handleDownloadUnitTests() {
+    const downloadButton = document.getElementById('downloadUnitTestsButton');
+    if (downloadButton) {
+        downloadButton.addEventListener('click', () => {
+            const testsToDownload = unitTestsCodeEditor ? unitTestsCodeEditor.getValue() : '';
+            if (testsToDownload) {
+                downloadTextFile(testsToDownload, 'unit_tests.txt');
+            }
+        });
+    }
 }
