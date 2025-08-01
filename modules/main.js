@@ -4,7 +4,7 @@ import { updateStatus } from './statusMessages.js';
 import { initializeFirebase, db, auth } from './firebaseService.js';
 import { login, authProviders, subscribeToAuthChanges } from './authService.js';
 import { initializeCodeMirror, inputEditor, editor, unitTestsCodeEditor } from './codeEditorService.js';
-import { handleFileUpload, handleCopyRefactoredCode, handleCopyUnitTests, handleDownloadRefactoredCode, handleDownloadUnitTests } from './eventHandlers.js';
+import { handleFileUpload, handleCopyRefactoredCode, handleCopyUnitTests, handleDownloadRefactoredCode, handleDownloadUnitTests, updateLanguageDisplays } from './eventHandlers.js';
 import { handleRefactorButton } from './refactoringLogic.js';
 
 async function initializeApplication() {
@@ -44,6 +44,25 @@ async function initializeApplication() {
         const securityAnalysisOutput = document.getElementById('securityAnalysisOutput');
         const flowchartDescriptionOutput = document.getElementById('flowchartDescriptionOutput');
 
+       
+
+        // Llama a la función al inicio para que se muestre el valor por defecto
+        updateLanguageDisplays(languageSelector, outputLanguageSelector);
+
+        // Agrega un escuchador de eventos para el selector de lenguaje de entrada
+        if (languageSelector) {
+            languageSelector.addEventListener('change', () => {
+                updateLanguageDisplays(languageSelector, outputLanguageSelector);
+            });
+        }
+
+        // Agrega un escuchador de eventos para el selector de lenguaje de salida
+        if (outputLanguageSelector) {
+            outputLanguageSelector.addEventListener('change', () => {
+                updateLanguageDisplays(languageSelector, outputLanguageSelector);
+            });
+        }
+
         if (refactorButton) {
             handleRefactorButton({
                 db: db,
@@ -70,8 +89,10 @@ async function initializeApplication() {
         handleDownloadRefactoredCode();
         handleDownloadUnitTests();
 
+        //9. LLamar funcion para lenguajes de entrada y salida
+        //  updateLanguageDisplays(languageSelector, outputLanguageSelector);
 
-        // 8. Opcional: Escuchar cambios de autenticación
+        // 9. Opcional: Escuchar cambios de autenticación
         subscribeToAuthChanges((user) => {
             console.log("Cambio en estado de autenticación:", user ? user.uid : "null");
         });

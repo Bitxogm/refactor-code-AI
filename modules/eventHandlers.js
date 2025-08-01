@@ -156,7 +156,7 @@ export function handleCopyUnitTests() {
  * @param {string} content - El contenido de texto del archivo.
  * @param {string} filename - El nombre del archivo a descargar.
  */
-function downloadTextFile(content, filename) {
+export function downloadTextFile(content, filename) {
     const blob = new Blob([content], { type: 'text/plain' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
@@ -168,6 +168,21 @@ function downloadTextFile(content, filename) {
     URL.revokeObjectURL(url);
 }
 
+/**
+ * Actualiza el texto de los displays de lenguaje en la interfaz.
+ */
+export function updateLanguageDisplays(languageSelector, outputLanguageSelector) {
+    const inputLangDisplay = document.getElementById('input-lang-display');
+    const outputLangDisplay = document.getElementById('output-lang-display');
+
+    if (inputLangDisplay && languageSelector) {
+        inputLangDisplay.textContent = languageSelector.value;
+    }
+
+    if (outputLangDisplay && outputLanguageSelector) {
+        outputLangDisplay.textContent = outputLanguageSelector.value;
+    }
+}
   // Maneja el clic en el botón de descarga del código refactorizado.
  
 export function handleDownloadRefactoredCode() {

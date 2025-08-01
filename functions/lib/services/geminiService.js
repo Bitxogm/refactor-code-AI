@@ -168,68 +168,7 @@ ${code}
 \`\`\`
 Por favor, rellena el JSON de arriba basándote en las instrucciones y el código proporcionado.
 `;
-    // ... (Tu código actual de geminiService.ts, incluyendo la definición y lógica de 'instruction') ...
-    //   const fullPrompt = `
-    // Eres un ingeniero de software experto en múltiples lenguajes de programación, refactorización, desarrollo de pruebas unitarias y análisis de seguridad.
-    // Tu tarea es procesar el código proporcionado por el usuario y devolver una respuesta estructurada **EXCLUSIVAMENTE en formato JSON**.
-    // El JSON debe contener los siguientes campos obligatorios, cada uno como una cadena de texto:
-    // 1.  \`refactoredCode\` (string):
-    //     * Contendrá el código ${inputLanguage} refactorizado, con comentarios claros **dentro del código** explicando cada cambio y mejora realizada (ej. qué cambios, por qué se hicieron, puntos clave de lógica).
-    //     * La refactorización debe buscar mejorar la legibilidad, la eficiencia, la modularidad y la adherencia a las mejores prácticas de ${inputLanguage} (ej: PEP 8 para Python).
-    //     * Este campo siempre contendrá el código principal refactorizado, incluso si no se selecciona específicamente el modo de refactorización, ya que es la base para otros análisis.
-    // 2.  \`refactoringSummary\` (string):
-    //     * Contendrá un resumen conciso en texto plano (puedes usar Markdown para formato si es útil, pero sin código) de las **mejoras generales** realizadas en la refactorización del código.
-    //     * Si el modo seleccionado es 'test' o 'security' y no se aplica una refactorización significativa más allá de la base, este campo puede indicar 'No se requirieron cambios de refactorización significativos para este análisis.'
-    // 3.  \`inlineComments\` (Array<Object>):
-    //     * Contendrá una lista de objetos JSON, donde cada objeto representa un comentario o sugerencia asociado a una línea específica del código refactorizado.
-    //     * Formato de cada objeto: \`{"lineNumber": <número de línea>, "text": "<descripción del comentario>", "type": "<info|warning|error>"}\`
-    //         * \`lineNumber\` (number): El número de línea (base 1) en el \`refactoredCode\` al que se refiere el comentario.
-    //         * \`text\` (string): El texto del comentario o sugerencia.
-    //         * \`type\` (string, opcional): Indica la naturaleza del comentario (por ejemplo, 'info' para información general, 'warning' para posibles problemas, 'error' para errores o problemas graves). Si no hay un tipo específico, usa 'info'.
-    //     * Genera estos comentarios para explicar cambios específicos, mejoras, optimizaciones, o puntos de atención directamente relacionados con las líneas de código afectadas en \`refactoredCode\`.
-    //     * Si no hay comentarios específicos para líneas (ej. refactorización muy simple o solo análisis general), este campo debe ser una array vacía \`[]\`.
-    // 4.  \`unitTests\` (string):
-    //     * Si el \`analysisMode\` es 'test', este campo contendrá el código ${outputLanguage} completo de **pruebas unitarias exhaustivas** para todas las clases y métodos relevantes del código proporcionado.
-    //     * Las pruebas deben usar el framework más común en ${outputLanguage} (ej: \`unittest\` para Python, Jest para JS).
-    //     * Deben incluir pruebas para casos normales, límites y errores.
-    //     * Los comentarios deben estar **dentro del código de las pruebas** explicando qué prueba se realiza y por qué es importante.
-    //     * **IMPORTANTE**: NO incluyas el código original de las clases principales dentro de este campo, solo el código de las pruebas unitarias.
-    //     * Si el \`analysisMode\` NO es 'test', este campo debe ser una cadena vacía \`""\` o una cadena con un mensaje como 'Este modo no genera pruebas unitarias.'.
-    // 5.  \`securityAnalysis\` (string):
-    //     * Si el \`analysisMode\` es 'security', este campo contendrá un informe detallado en texto plano (Markdown opcional para formato, pero sin bloques de código) del **análisis de seguridad** del código.
-    //     * Identificará posibles vulnerabilidades comunes (ej. inyección, manejo de datos sensibles, validación de entrada deficiente, XSS, SQLi, CSRF, RCE, etc.), riesgos y sugerencias de mitigación.
-    //     * Dominio profundo de OWASP Top 10 y estándares CWE, CVE, NIST.
-    //     * **IMPORTANTE**: NO incluyas el código original ni ninguna refactorización del código dentro de este campo, solo el informe de análisis de seguridad.
-    //     * Si el \`analysisMode\` NO es 'security', este campo debe ser una cadena vacía \`""\` o una cadena con un mensaje como 'Este modo no realiza un análisis de seguridad.'.
-    // 6.  \`flowchartDescription\` (string):
-    //     * Contendrá una descripción detallada en texto plano (Markdown opcional) de cómo se podría representar la lógica principal del programa en un diagrama de flujo, describiendo los pasos clave y las decisiones. Esto es útil para la comprensión gráfica del código.
-    //     * Este campo siempre debe generarse, independientemente del modo.
-    // // ...
-    // **Reglas Generales de la Respuesta JSON:**
-    // -   La respuesta debe ser **EXCLUSIVAMENTE el objeto JSON**, sin ningún texto adicional, preámbulo o post-ámbulo.
-    // -   El JSON debe ser **válido** y estar bien formateado.
-    // -   **Todos los campos listados arriba (refactoredCode, refactoringSummary, inlineComments, etc.) deben estar presentes en el JSON final.**
-    // -   Cada campo del JSON debe contener el texto solicitado, o una cadena vacía \`""\` si no aplica para el modo actual o si no hay contenido, o un array vacío \`[]\` para \`inlineComments\` si no hay comentarios.
-    // ---
-    // ### **Instrucciones Adicionales Específicas para el Modo (\`${analysisMode}\`):**
-    // ${instruction}
-    // ### **Código a Procesar (Lenguaje: \`${inputLanguage}\`):**
-    // \`\`\`${inputLanguage}
-    // ${code}
-    // \`\`\`
-    // ### ** Formato de Respuesta Requerido(JSON);
-    // json
-    // {
-    // "refactoredCode"; ""
-    // "refactoredCodeCommentsRaw"; ""
-    // "refactoringSummary"; ""
-    // "unitTests"; ""
-    // "securityAnalysis"; ""
-    // "flowchartDescription"; ""
-    // }
-    // Por favor, rellena el JSON de arriba basándote en las instrucciones y el código proporcionado.
-    // `;
-    // ... (El resto de tu código en geminiService.ts) ...
+ 
     try {
         functions.logger.info(`Realizando llamada a la API de Gemini para ${inputLanguage} → ${outputLanguage} [Modo: ${analysisMode}]`);
         const result = await model.generateContent(fullPrompt);
