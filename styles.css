@@ -14,6 +14,9 @@ body {
         background-color: #f3f4f6;
     }
 
+/* * {
+  outline: 1px dashed rgb(10, 228, 10);
+} */
 
 /* Contenedor principal de la aplicación (la "tarjeta" blanca grande) */
 .app-container {
@@ -65,13 +68,11 @@ body {
     flex-shrink: 0;
 }
 
-.choose__file-button-wrapper {
-    margin-left: 1rem;
-    margin-right: 1rem;
-}
+
+
 
 .choose__file-button-wrapper>input {
-    margin-left: 0.5;
+    /* margin-left: 0.5; */
     font-size: 0.8rem;
     border-radius: 4px;
 }
@@ -282,13 +283,14 @@ body {
     display: flex;
     justify-content: space-between;
     align-items:center ;
-    border: 1px green solid;
+    /* border: 1px green solid; */
 }
 .copy-message-wrapper {
-    border: 1px solid red;
+    /* border: 1px solid red; */
     width: 50%;
     display: flex;
     justify-content: flex-start;
+    align-items: center;
 }
 
 .copy-button {
@@ -330,6 +332,7 @@ body {
     border: 1px solid green;
     display: flex; 
     justify-content:space-between ;  
+    align-items: center;
 
 }
 
@@ -337,13 +340,13 @@ body {
     display: flex;
     flex-direction: row;
     align-items:center ;
-}
+} */
 
 
 .test-message-wrapper {
     border: 1px solid red;
     
-}
+} 
 .copy-feedback-test-message{
     transform: translate(-50%, -50%);
     background-color: #22c55e;

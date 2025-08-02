@@ -21,7 +21,7 @@
         align-items: center;
         gap: 15px;
         width: 100%;
-        max-width: 700px;
+        /* max-width: 700px; */
         margin: 0 auto;
     }
 
@@ -42,7 +42,7 @@
         flex-direction: column;
         gap: 15px;
         width: 100%;
-        max-width: 700px;
+        /* max-width: 700px; */
         /* Ancho máximo consistente para los editores principales */
         margin: 0 auto;
         /* Asegura que el propio main-editors-wrapper se centre */
@@ -68,7 +68,7 @@
         align-items: center;
         gap: 15px;
         width: 100%;
-        max-width: 700px;
+        /* max-width: 700px; */
         /* Ancho máximo consistente para los resultados adicionales */
         margin: 0 auto;
         /* ¡Esto lo centra horizontalmente! */
@@ -78,7 +78,7 @@
     .additional-results-wrapper .result-section {
         width: 100%;
         min-width: unset;
-        max-width: 700px;
+        /* max-width: 700px; */
         /* Ancho máximo consistente para cada sección de resultado */
         margin-top: 0;
         margin: 0 auto;
@@ -87,7 +87,7 @@
 
     .text-results-column {
         width: 100%;
-        max-width: 700px;
+        /* max-width: 700px; */
         /* Ancho máximo consistente para la columna de texto de resultados */
         margin: 0 auto;
         /* Asegura que esta columna se centre */
@@ -140,7 +140,7 @@
     .copy__button, .copy__button-test{
         position: static;
         /* Vuelve a la posición normal en el flujo del documento */
-        margin-top: 1rem;
+        /* margin-top: 1rem; */
         display: flex;
         justify-content: center;
         right: auto;
@@ -155,10 +155,11 @@
 
 @media(max-width: 516px) {
 
-
-     * {
-        outline: 2px dashed red;
+    .choose-file-button{
+        width: 100%;
     }
+    
+  
 
     .header__choose-file{
         flex-direction: column;
@@ -167,6 +168,8 @@
     }
 
     .header__choose-mode{
+        width: 100%;
+        font-size: 1rem;
         flex-direction: column;
         justify-content: center;
         align-items: flex-start;
