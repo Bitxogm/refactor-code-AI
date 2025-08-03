@@ -31,26 +31,29 @@
 
             <!-- BOTON DE SELECCION DE ARCHIVO -->
             <div class="header__choose-file ">
+                <h2 class="choose-file-title">Selecciona Archivo</h2>
                 <label for="fileInput" class="choose-file">
-                    <h2 class="choose-file-title">Selecciona Archivo</h2>
+                    <div class="choose__file-button-wrapper">
+                        <input class="choose-file-button" type="file" id="fileInput">
+                    </div>
                 </label>
-                <div class="choose__file-button-wrapper">
-                    <input class="choose-file-button" type="file" id="fileInput">
-                </div>
             </div>
 
             <div class="header__choose-mode">
-                <label for="analysisMode" class="choose-mode-title ">Modo de Análisis:</label>
+                <div class="analis_mode">
+                    <label for="analysisMode" class="choose-mode-title ">Modo de Análisis:</label>
+                </div>
                 <select id="analysisMode">
-                
-
-                        <option value="refactor">Refactorización</option>
-                        <option value="test">Pruebas Unitarias</option>
-                        <option value="security">Análisis de Seguridad</option>
-                    
+                    <option value="refactor">Refactorización</option>
+                    <option value="test">Pruebas Unitarias</option>
+                    <option value="security">Análisis de Seguridad</option>
                 </select>
             </div>
         </div>
+                
+                        
+                        
+
 
 
 
@@ -92,11 +95,8 @@
                     <div id="input-editor-container" class="editor-box"> <!-- Nueva clase editor-box -->
                         <!-- CodeMirror se inicializará aquí -->
                     </div>
-                    
-                    <!-- <p class="language-display-message"> 
-                        Lenguaje de entrada: <span id="input-lang-display" class="font-semibold">-</span> |
-                        Lenguaje de salida: <span id="output-lang-display" class="font-semibold">-</span>
-                    </p> -->
+
+
                 </div>
             </section>
 
@@ -135,29 +135,28 @@
                             </div>
                         </div>
 
-                        <!-- Mensajes de lenguajes seleccionados -->
-                        <!-- <p class="language-display-message"> 
-                            Lenguaje de entrada: <span id="input-lang-display" class="font-semibold">-</span> |
-                            Lenguaje de salida: <span id="output-lang-display" class="font-semibold">-</span>
-                        </p> -->
+
 
                         <!-- BOTON DE COPIAR -->
                         <div class="button-wrapper">
-                            <div class="copy__button">
+                            <div class="copy__button-refactor">
                                 <button id="copyRefactoredCodeButton" class="copy-button"
-                                    title="Copiar al portapapeles">
+                                    title="Copy Code">
                                     <i class="fas fa-copy"></i>
                                 </button>
+                                <div class="test-message-wrapper">
+                                    <span id="copy-feedback-message" class="copy-feedback-message">Copiado!</span>
+                                </div>
                             </div>
-                            <div class="copy-message-wrapper">
-                                <span id="copy-feedback-message" class="copy-feedback-message">Copiado!</span>
-                            </div>
-
-                            <button id="downloadRefactoredCodeButton" class="copy-button" title="Copiar al portapapeles">
+                            <button id="downloadRefactoredCodeButton" class="copy-button"
+                                title="Download Code">
                                 <i class="fas fa-download"></i>
+                            </div>
                             </button>
-                        </div>
                     </div>
+
+
+              
                 </div>
             </section>
         </div> <!-- Cierre de main-editors-wrapper -->
@@ -207,7 +206,7 @@
 
                 <div class="test__button-wrapper">
                     <div class="copy__button-test">
-                        <button id="copyUnitTestButton" class="copy-button" title="Copiar al portapapeles">
+                        <button id="copyUnitTestButton" class="copy-button" title="Copy Tests">
                             <!-- Nueva clase copy-button -->
                             <i class="fas fa-copy"></i>
                         </button>
@@ -215,7 +214,7 @@
                             <span id="unitTestCopyMessage" class="copy-feedback-test-message">Copiado!</span>
                         </div>
                     </div>
-                    <button id="downloadUnitTestsButton" class="copy-button" title="Copiar al portapapeles">
+                    <button id="downloadUnitTestsButton" class="copy-button" title="Download Tests">
                         <!-- Nueva clase copy-button -->
                         <i class="fas fa-download"></i>
                     </button>

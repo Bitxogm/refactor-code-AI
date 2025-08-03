@@ -50,7 +50,7 @@ body {
 .section__header {
     width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     flex-wrap: nowrap;
     gap: 1rem;
@@ -59,7 +59,8 @@ body {
 
 .header__choose-file {
     display: flex;
-
+    justify-content: center;
+    align-items: center;
 }
 
 .choose-file-title {
@@ -67,14 +68,23 @@ body {
     font-weight: 700;
     flex-shrink: 0;
 }
+.choose-file-button{
+    font-size: 0.8rem;
+    border-radius: 4px;
+    margin-left: 1rem;
+    cursor: pointer;
+
+}
+
 
 
 
 
 .choose__file-button-wrapper>input {
-    /* margin-left: 0.5; */
     font-size: 0.8rem;
     border-radius: 4px;
+    margin-left: 1rem;
+    cursor: pointer;
 }
 
 .header__choose-mode {
@@ -92,6 +102,7 @@ body {
     font-size: 1.5rem;
     margin-bottom: 0;
     background-color: 2px solid rebeccapurple;
+    padding-right: 1rem;
 }
 
 .languaje-selector-title {
@@ -283,17 +294,19 @@ body {
     display: flex;
     justify-content: space-between;
     align-items:center ;
-    /* border: 1px green solid; */
 }
-.copy-message-wrapper {
-    /* border: 1px solid red; */
-    width: 50%;
+
+
+.copy__button-refactor{ 
     display: flex;
-    justify-content: flex-start;
+    flex-direction: row;
     align-items: center;
+
+
 }
 
 .copy-button {
+  
     border: 3px solid rgb(236, 230, 230);
     background-color: #eb8b0d;
     color: #374151;
@@ -313,8 +326,6 @@ body {
 /* Mensaje de feedback de copiado */
 
 .copy-feedback-message {
-    position: absolute;
-    margin-left: 10rem;
     transform: translate(-50%, -50%);
     background-color: #22c55e;
     color: #ffffff;
@@ -329,7 +340,6 @@ body {
 
 
 .test__button-wrapper {
-    border: 1px solid green;
     display: flex; 
     justify-content:space-between ;  
     align-items: center;
@@ -340,13 +350,9 @@ body {
     display: flex;
     flex-direction: row;
     align-items:center ;
-} */
-
-
-.test-message-wrapper {
-    border: 1px solid red;
-    
 } 
+
+
 .copy-feedback-test-message{
     transform: translate(-50%, -50%);
     background-color: #22c55e;
@@ -454,7 +460,7 @@ body {
 
 /* Icono de carga y mensajes de estado */
 .icon__loading {
-    margin-bottom: 1rem;
+    margin-top: 1rem;
     text-align: center;
 }
 
