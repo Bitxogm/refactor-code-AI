@@ -21,6 +21,24 @@
 <body> <!-- Eliminadas clases de Tailwind del body -->
     <div class="app-container"> <!-- Nueva clase para el contenedor principal -->
 
+
+        <!-- Seccion Login -->
+
+        <div class="auth-status-container">
+            <span id="userDisplay" class="font-bold text-lg"></span>
+            <div id="loginButtonsContainer">
+                <button id="loginAnonymouslyButton" class="btn-anonymous">
+                    Sin Login
+                </button>
+                <button id="loginWithGoogleButton" class="btn-google">
+                    Login con Google
+                </button>
+            </div>
+            <button id="logoutButton" class="btn-logout" style="display: none;">
+                Cerrar sesión
+            </button>
+        </div>
+
         <!-- HEADER TITLE -->
         <div class="header">
             <header class="header__title">Asistente Integral de Código con IA</header>
@@ -42,12 +60,12 @@
             <div class="header__choose-mode">
                 <label for="analysisMode" class="choose-mode-title ">Modo de Análisis:</label>
                 <select id="analysisMode">
-                
 
-                        <option value="refactor">Refactorización</option>
-                        <option value="test">Pruebas Unitarias</option>
-                        <option value="security">Análisis de Seguridad</option>
-                    
+
+                    <option value="refactor">Refactorización</option>
+                    <option value="test">Pruebas Unitarias</option>
+                    <option value="security">Análisis de Seguridad</option>
+
                 </select>
             </div>
         </div>
@@ -92,7 +110,7 @@
                     <div id="input-editor-container" class="editor-box"> <!-- Nueva clase editor-box -->
                         <!-- CodeMirror se inicializará aquí -->
                     </div>
-                    
+
                     <!-- <p class="language-display-message"> 
                         Lenguaje de entrada: <span id="input-lang-display" class="font-semibold">-</span> |
                         Lenguaje de salida: <span id="output-lang-display" class="font-semibold">-</span>
@@ -153,7 +171,8 @@
                                 <span id="copy-feedback-message" class="copy-feedback-message">Copiado!</span>
                             </div>
 
-                            <button id="downloadRefactoredCodeButton" class="copy-button" title="Copiar al portapapeles">
+                            <button id="downloadRefactoredCodeButton" class="copy-button"
+                                title="Copiar al portapapeles">
                                 <i class="fas fa-download"></i>
                             </button>
                         </div>
