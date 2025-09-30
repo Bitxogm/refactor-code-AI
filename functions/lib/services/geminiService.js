@@ -36,7 +36,7 @@ async function getGeminiAnalysis(code, inputLanguage, outputLanguage, analysisMo
         throw new Error("API Key para Gemini no configurada.");
     }
     const genAI = new generative_ai_1.GoogleGenerativeAI(API_KEY);
-    const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
+    const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
     let instruction = "";
     if (analysisMode === "test") {
         instruction = `
