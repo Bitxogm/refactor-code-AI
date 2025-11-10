@@ -17,6 +17,7 @@
     }
   ],
   "hosting": {
+     "target": "refactorizador-antiguo",
     "public": ".",
     "ignore": [
       "firebase.json",

@@ -1,5 +1,15 @@
 {
   "projects": {
     "default": "agente-refactorizacion-v-01"
-  }
+  },
+  "targets": {
+    "agente-refactorizacion-v-01": {
+      "hosting": {
+        "refactorizador-antiguo": [
+          "agente-refactorizacion-v-01"
+        ]
+      }
+    }
+  },
+  "etags": {}
 }
